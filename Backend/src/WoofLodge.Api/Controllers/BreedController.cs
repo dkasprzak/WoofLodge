@@ -31,6 +31,14 @@ namespace WoofLodge.Api.Controllers
 
             return Ok(breed);
         }
-        
+
+        [HttpGet("test")]
+        public ActionResult<string> Hello()
+        {
+            var message = "Hello";
+            return message;
+        }
+
+
     }
 }

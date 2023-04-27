@@ -44,38 +44,7 @@ namespace WoofLodge.Api.Data
                 .Property(b => b.BreedName)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.Entity<Breed>()
-                .HasData(
-                    new Breed()
-                    {
-                        Id = 1,
-                        BreedName = "Kundel"
-                    },
-
-                    new Breed()
-                    {
-                        Id = 2,
-                        BreedName = "Owczarek szwajcarski"
-                    },
-
-                    new Breed()
-                    {
-                        Id = 3,
-                        BreedName = "Pekińczyk"
-                    },
-
-                    new Breed()
-                    {
-                        Id = 4,
-                        BreedName = "Mops"
-                    },
-
-                    new Breed()
-                    {
-                        Id = 5,
-                        BreedName = "Golden retriever"
-                    }
-                );
+            builder.Entity<Breed>();
 
             builder.Entity<Image>()
                 .HasKey(i => i.Id);

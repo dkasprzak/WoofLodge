@@ -6,22 +6,23 @@ using WoofLodge.Api.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<DatabaseInitializer>();
 builder.Services.AddScoped<IBreedService, BreedService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<WoofLodgeDbContext>(options => 
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("WoofLodgeConnection"));
-}); 
+    options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionString"));
+});
+builder.Services.AddHostedService<DatabaseInitializer>();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+//Add this line to listen on port 80
+#if !DEBUG
+    builder.WebHost.UseUrls("http://*:80");
+#endif
 
 var app = builder.Build();
-
-var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
-
-seeder.Seed();
 
 if (app.Environment.IsDevelopment())
 {

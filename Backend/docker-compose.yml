@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    shm_size: '4gb'
+    container_name: woof_lodge_db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports: 
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgres/data    
+    networks:
+      - woof_lodge_network    
+
+  woof_lodge_backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: woof_lodge_backend  
+    restart: unless-stopped
+    ports:
+      - 80:80
+    environment:
+      - ConnectionString=Host=woof_lodge_db;Port=5432;Database=WoofLodge;Username=postgres;Password=admin;Include Error Detail=true
+    depends_on:
+      - postgres
+    networks:
+      - woof_lodge_network    
+
+networks:
+  woof_lodge_network :   
+
+volumes:
+  postgres:
+    driver: local  
