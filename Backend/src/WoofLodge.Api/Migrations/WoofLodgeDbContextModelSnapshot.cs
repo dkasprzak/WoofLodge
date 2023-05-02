@@ -24,11 +24,9 @@ namespace WoofLodge.Api.Migrations
 
             modelBuilder.Entity("WoofLodge.Api.Entities.Breed", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("BreedName")
                         .IsRequired()
@@ -42,14 +40,12 @@ namespace WoofLodge.Api.Migrations
 
             modelBuilder.Entity("WoofLodge.Api.Entities.Dog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("uuid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BreedId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("BreedId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -80,11 +76,9 @@ namespace WoofLodge.Api.Migrations
 
             modelBuilder.Entity("WoofLodge.Api.Entities.Image", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ContentType")
                         .IsRequired()
@@ -94,8 +88,8 @@ namespace WoofLodge.Api.Migrations
                         .IsRequired()
                         .HasColumnType("bytea");
 
-                    b.Property<int>("DogId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("DogId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

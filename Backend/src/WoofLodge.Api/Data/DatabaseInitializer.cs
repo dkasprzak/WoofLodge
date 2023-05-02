@@ -29,31 +29,31 @@ namespace WoofLodge.Api.Data
                 {
                      new Breed()
                     {
-                        Id = 1,
+                        Id = Guid.Parse("15f26f51-d996-482b-8fd0-f62a061a7dba"),
                         BreedName = "Kundel"
                     },
 
                     new Breed()
                     {
-                        Id = 2,
+                        Id = Guid.Parse("15d26f51-d996-482b-8fd0-f62a061a7dba"),
                         BreedName = "Owczarek szwajcarski"
                     },
 
                     new Breed()
                     {
-                        Id = 3,
+                        Id = Guid.Parse("15f26f51-d996-482b-8fd0-f62a061a7dda"),
                         BreedName = "Pekińczyk"
                     },
 
                     new Breed()
                     {
-                        Id = 4,
+                        Id = Guid.Parse("35f26f51-d996-482b-8fd0-f62a061a7dba"),
                         BreedName = "Mops"
                     },
 
                     new Breed()
                     {
-                        Id = 5,
+                        Id = Guid.Parse("55f26f51-d996-485b-8fd0-f62a061a7dba"),
                         BreedName = "Golden retriever"
                     }
                 };

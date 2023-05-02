@@ -7,15 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IBreedService, BreedService>();
+builder.Services.AddScoped<IDogService, DogService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<WoofLodgeDbContext>(options => 
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionString"));
-});
-builder.Services.AddHostedService<DatabaseInitializer>();
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+builder.Services.AddPostgres(builder.Configuration);
 
 //Add this line to listen on port 80
 #if !DEBUG
